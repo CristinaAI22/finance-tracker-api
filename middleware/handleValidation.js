@@ -5,7 +5,7 @@ export const handleValidation = (req, res, next) => {
   if (!errors.isEmpty()) {
     const formatted = errors.array().map((err) => ({
       field: err.param,
-      message: err.message,
+      message: err.msg,
     }));
     return res.status(400).json({ errors: formatted });
   }
