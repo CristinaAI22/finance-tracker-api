@@ -1,4 +1,4 @@
-import { Transaction } from "../models/Transaction";
+import { Transaction } from "../models/Transaction.js";
 import asyncHandler from "express-async-handler";
 
 export const addTransaction = asyncHandler(async (req, res) => {
@@ -15,7 +15,7 @@ export const addTransaction = asyncHandler(async (req, res) => {
   res.status(201).json(transaction);
 });
 
-export const getTransaction = asyncHandler(async (req, res) => {
+export const getTransactions = asyncHandler(async (req, res) => {
   const { month, category, type } = req.query;
 
   let query = { user: req.user.id };
@@ -66,7 +66,7 @@ export const updateTransaction = asyncHandler(async (req, res) => {
   res.status(200).json(updated);
 });
 
-const deleteTransaction = asyncHandler(async (req, res) => {
+export const deleteTransaction = asyncHandler(async (req, res) => {
   const transaction = await Transaction.findOne({
     _id: req.params.id,
     user: req.user.id,
